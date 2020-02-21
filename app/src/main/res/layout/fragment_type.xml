@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.lmj.fakemi.type.TypeViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.lmj.fakemi.widget.MainClassView
+            android:id="@+id/class_video"
+            android:layout_width="0dp"
+            android:layout_height="90dp"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/class_doc"
+            app:layout_constraintTop_toTopOf="parent"
+            app:view_icon="@mipmap/icon_main_class_video"
+            app:view_title="文档" />
+
+        <com.lmj.fakemi.widget.MainClassView
+            android:id="@+id/class_doc"
+            android:layout_width="0dp"
+            android:layout_height="90dp"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintLeft_toRightOf="@+id/class_video"
+            app:layout_constraintRight_toLeftOf="@id/class_pic"
+            app:layout_constraintTop_toTopOf="parent"
+            app:view_icon="@mipmap/icon_main_class_doc"
+            app:view_title="文档" />
+
+        <com.lmj.fakemi.widget.MainClassView
+            android:id="@+id/class_pic"
+            android:layout_width="0dp"
+            android:layout_height="90dp"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintLeft_toRightOf="@+id/class_doc"
+            app:layout_constraintRight_toLeftOf="@id/class_music"
+            app:layout_constraintTop_toTopOf="parent"
+            app:view_icon="@mipmap/icon_main_class_pic"
+            app:view_title="图片" />
+
+        <com.lmj.fakemi.widget.MainClassView
+            android:id="@+id/class_music"
+            android:layout_width="0dp"
+            android:layout_height="90dp"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintLeft_toRightOf="@+id/class_pic"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:view_icon="@mipmap/icon_main_class_music"
+            app:view_title="音乐" />
+
+        <com.lmj.fakemi.widget.MainClassView
+            android:id="@+id/class_apk"
+            android:layout_width="0dp"
+            android:layout_height="90dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="@+id/class_video"
+            app:layout_constraintTop_toBottomOf="@+id/class_video"
+            app:view_icon="@mipmap/icon_main_class_apk"
+            app:view_title="安装包" />
+
+        <com.lmj.fakemi.widget.MainClassView
+            android:id="@+id/class_zip"
+            android:layout_width="0dp"
+            android:layout_height="90dp"
+            app:layout_constraintLeft_toRightOf="@+id/class_apk"
+            app:layout_constraintRight_toRightOf="@+id/class_doc"
+            app:layout_constraintTop_toBottomOf="@+id/class_doc"
+            app:view_icon="@mipmap/icon_main_class_zip"
+            app:view_title="压缩包" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
