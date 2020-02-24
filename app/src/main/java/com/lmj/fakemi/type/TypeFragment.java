@@ -32,7 +32,6 @@ public class TypeFragment extends BaseFragment<FragmentTypeBinding,TypeViewModel
     @Override
     public TypeViewModel initViewModel() {
         FakeViewModelFactory factory = FakeViewModelFactory.getInstance(mActivity.getApplication());
-
         return ViewModelProviders.of(this,factory).get(TypeViewModel.class);
     }
 }
