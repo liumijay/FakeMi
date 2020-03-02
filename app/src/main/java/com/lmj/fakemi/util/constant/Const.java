@@ -32,4 +32,6 @@ public class Const {
         public static final int APK = 35;
         public static final int ZIP = 36;
     }
+
+    public static final int EMPTY=11;
 }

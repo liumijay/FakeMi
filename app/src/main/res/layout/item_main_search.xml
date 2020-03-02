@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="holder"
+            type="com.lmj.fakemi.recent.RecentParentAdapter.SearchHolder" />
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:onClickCommand="@{holder.onSearchClick}">
+
+        <TextView
+            android:id="@+id/search_layout"
+            android:layout_width="match_parent"
+            android:layout_height="38dp"
+            android:layout_marginStart="@dimen/common_margin"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="@dimen/common_margin"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/search_box"
+            android:drawableStart="@mipmap/icon_search_btn_pressed"
+            android:drawablePadding="10dp"
+            android:gravity="center_vertical"
+            android:paddingStart="@dimen/common_padding"
+            android:paddingEnd="@dimen/common_padding"
+            android:text="@string/search"
+            android:textColor="@color/tab_normal" />
+
+        <View
+            android:id="@+id/divider_line"
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:background="@color/common_line" />
+    </LinearLayout>
+
+</layout>

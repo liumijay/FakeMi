@@ -1,6 +1,7 @@
 package me.goldze.mvvmhabit.utils;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -8,6 +9,7 @@ import android.graphics.Color;
 import android.graphics.PixelFormat;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.util.DisplayMetrics;
 import android.view.View;
 
 import java.io.ByteArrayInputStream;
@@ -602,6 +604,19 @@ public final class ConvertUtils {
     public static int px2sp(final float pxValue) {
         final float fontScale = Utils.getContext().getResources().getDisplayMetrics().scaledDensity;
         return (int) (pxValue / fontScale + 0.5f);
+    }
+
+    /**
+     * 返回屏幕尺寸
+     */
+    public static int getScreenWidth() {
+        DisplayMetrics metrics = Utils.getContext().getResources().getDisplayMetrics();
+        return metrics.widthPixels;
+    }
+
+    public static int getScreenHeight() {
+        DisplayMetrics metrics = Utils.getContext().getResources().getDisplayMetrics();
+        return metrics.heightPixels;
     }
 
     /**

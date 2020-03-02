@@ -16,7 +16,7 @@ public class ViewAdapter {
 
     @BindingAdapter("lineManager")
     public static void setLineManager(RecyclerView recyclerView, LineManagers.LineManagerFactory lineManagerFactory) {
-        if (lineManagerFactory!=null){
+        if (lineManagerFactory!=null&&recyclerView.getItemDecorationCount() == 0){
             recyclerView.addItemDecoration(lineManagerFactory.create(recyclerView));
         }
     }

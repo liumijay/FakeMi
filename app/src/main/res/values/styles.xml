@@ -21,10 +21,4 @@
         <item name="android:textStyle">bold</item>
     </style>
 
-    <!--首页分类view-->
-    <declare-styleable name="MainClassView">
-        <attr name="view_icon" format="reference"/>
-        <attr name="view_title"  format="string"/>
-    </declare-styleable>
-
 </resources>

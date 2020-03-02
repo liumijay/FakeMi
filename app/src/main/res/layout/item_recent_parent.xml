@@ -1,86 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
     <data>
+
         <variable
             name="holder"
             type="com.lmj.fakemi.recent.RecentParentAdapter.RecentParentHolder" />
     </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
         <ImageView
             android:id="@+id/item_parent_icon"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:layout_marginTop="10dp"
             android:layout_marginStart="@dimen/common_margin"
             app:imgSrc="@{holder.recentFile.fileIcon}"
+            app:layout_constraintBottom_toTopOf="@id/item_parent_recycler"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/item_parent_recycler"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/item_parent_title"
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:textSize="@dimen/common_content"
+            android:layout_weight="1"
             android:text="@{holder.recentFile.title}"
             android:textColor="@color/common_title"
+            android:textSize="@dimen/common_content"
+            app:layout_constraintBottom_toBottomOf="@id/item_parent_icon"
             app:layout_constraintLeft_toRightOf="@id/item_parent_icon"
             app:layout_constraintTop_toTopOf="@id/item_parent_icon"
-            app:layout_constraintBottom_toBottomOf="@id/item_parent_icon"
-            tools:text="图片60项-6月15日"/>
+            tools:text="图片60项-6月15日" />
+
+        <View
+            android:id="@+id/divider_line"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/common_line"
+            android:background="@color/common_line"
+            android:layout_marginTop="10dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/item_parent_icon"/>
 
         <com.lmj.fakemi.widget.CusRecyclerView
             android:id="@+id/item_parent_recycler"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:paddingStart="@dimen/common_margin"
-            android:paddingEnd="@dimen/common_margin"
-            android:layout_marginTop="10dp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
             app:adapter="@{holder.adapter}"
+            app:layout_constrainedWidth="true"
             app:layoutManager="@{holder.layoutManager}"
-            app:lineManager="@{holder.lineFactory}"
-            app:layout_constraintTop_toBottomOf="@id/item_parent_icon"/>
+            app:layout_constraintStart_toEndOf="@id/item_parent_icon"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/divider_line"
+            app:lineManager="@{holder.lineFactory}" />
 
         <LinearLayout
             android:id="@+id/item_parent_more_layout"
             android:layout_width="0dp"
             android:layout_height="45dp"
             android:gravity="center"
-            app:layout_constraintTop_toBottomOf="@id/item_parent_recycler"
+            app:isVisible="@{holder.recentFile.hasExpand()}"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:isVisible="@{holder.recentFile.hasExpand()}"
+            app:layout_constraintTop_toBottomOf="@id/item_parent_recycler"
             app:onClickCommand="@{holder.onMoreClick}">
+
             <TextView
                 android:id="@+id/item_parent_more"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/common_sub_title"
                 android:layout_marginEnd="8dp"
-                android:textSize="@dimen/common_content"
                 android:text="@{holder.moreText()}"
-                tools:text="更多"/>
+                android:textColor="@color/common_sub_title"
+                android:textSize="@dimen/common_content"
+                tools:text="更多" />
+
             <ImageView
                 android:id="@+id/item_parent_arrow"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:imgSrc="@{holder.moreArrow()}"
-                android:src="@mipmap/arrow_top"/>
+                android:src="@mipmap/arrow_top"
+                app:imgSrc="@{holder.moreArrow()}" />
         </LinearLayout>
+
         <View
             android:layout_width="0dp"
             android:layout_height="10dp"
             android:background="@color/gray_f2f2f2"
-            app:layout_constraintTop_toBottomOf="@id/item_parent_more_layout"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"/>
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/item_parent_more_layout" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

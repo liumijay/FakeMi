@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--首页分类view-->
+    <declare-styleable name="MainClassView">
+        <attr name="view_icon" format="reference"/>
+        <attr name="view_title"  format="string"/>
+    </declare-styleable>
+
+
+</resources>

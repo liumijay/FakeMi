@@ -9,9 +9,10 @@
             type="com.lmj.fakemi.recent.RecentChildPicAdapter.RecentChildPicHolder" />
     </data>
 
-        <com.lmj.fakemi.widget.SquareImageView
+        <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:url ="@{holder.path}"
+            app:size="@{holder.size}"
             android:scaleType="centerCrop"/>
 </layout>

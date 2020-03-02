@@ -26,9 +26,12 @@ public class RecentChildPicAdapter extends RecyclerView.Adapter<RecentChildPicAd
     private Activity mActivity;
     private List<EssFile> mList;
 
-    public RecentChildPicAdapter(Activity activity, List<EssFile> list) {
+    private int mSize;
+
+    public RecentChildPicAdapter(Activity activity, List<EssFile> list, int size) {
         mActivity = activity;
         mList = list == null ? new ArrayList<EssFile>() : list;
+        mSize = size;
     }
 
     @NonNull
@@ -42,6 +45,7 @@ public class RecentChildPicAdapter extends RecyclerView.Adapter<RecentChildPicAd
     @Override
     public void onBindViewHolder(@NonNull RecentChildPicHolder holder, int position) {
         holder.path = mList.get(position).mFilePath;
+        holder.size = mSize;
         holder.bind();
     }
 
@@ -52,12 +56,13 @@ public class RecentChildPicAdapter extends RecyclerView.Adapter<RecentChildPicAd
 
     public class RecentChildPicHolder extends BindingViewHolder<ViewDataBinding> {
         public String path;
+        public int size;
 
         RecentChildPicHolder(@NonNull ViewDataBinding binding) {
             super(binding);
         }
 
-        private void bind(){
+        private void bind() {
             getBinding().setVariable(BR.holder, this);
             getBinding().executePendingBindings();
         }

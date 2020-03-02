@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import com.lmj.fakemi.BR;
 import com.lmj.fakemi.R;
 import com.lmj.fakemi.entity.RecentFile;
-import com.lmj.fakemi.widget.CusRecyclerView;
+import com.lmj.fakemi.util.constant.Const;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,13 +22,14 @@ import me.goldze.mvvmhabit.binding.command.BindingAction;
 import me.goldze.mvvmhabit.binding.command.BindingCommand;
 import me.goldze.mvvmhabit.binding.viewadapter.recyclerview.BindingViewHolder;
 import me.goldze.mvvmhabit.binding.viewadapter.recyclerview.LineManagers;
+import me.goldze.mvvmhabit.utils.ConvertUtils;
 
 /*
  * Author:        LMJ
  * CreateDate:     2020/1/14 15:16
  * Description:     作用描述
  */
-public class RecentParentAdapter extends RecyclerView.Adapter<RecentParentAdapter.RecentParentHolder> {
+public class RecentParentAdapter extends RecyclerView.Adapter<BindingViewHolder> {
     private List<RecentFile> mList;
 
     private Activity mActivity;
@@ -39,25 +40,41 @@ public class RecentParentAdapter extends RecyclerView.Adapter<RecentParentAdapte
 
     @NonNull
     @Override
-    public RecentParentHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        ViewDataBinding binding = DataBindingUtil.inflate(LayoutInflater.from(mActivity),
-                R.layout.item_recent_parent, parent, false);
-        return new RecentParentHolder(binding);
+    public BindingViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        ViewDataBinding binding;
+        if (viewType != Const.EMPTY) {
+            binding = DataBindingUtil.inflate(LayoutInflater.from(mActivity),
+                    R.layout.item_recent_parent, parent, false);
+            return new RecentParentHolder(binding);
+        }
+        binding = DataBindingUtil.inflate(LayoutInflater.from(mActivity),
+                R.layout.item_main_search, parent, false);
+        return new SearchHolder(binding);
+
     }
 
     @Override
-    public void onViewAttachedToWindow(@NonNull RecentParentHolder holder) {
+    public void onViewAttachedToWindow(@NonNull BindingViewHolder holder) {
         super.onViewAttachedToWindow(holder);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecentParentHolder holder, int position) {
-            holder.bind(position);
+    public void onBindViewHolder(@NonNull BindingViewHolder holder, int position) {
+        if (holder instanceof RecentParentHolder){
+            ((RecentParentHolder)holder).bind(position-1);
+        }else if (holder instanceof SearchHolder){
+            ((SearchHolder)holder).bind();
+        }
     }
 
     @Override
     public int getItemCount() {
-        return mList.size();
+        return mList.size()+1;
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        return position!=0?0:Const.EMPTY;
     }
 
     public void setNewData(List<RecentFile> data) {
@@ -88,9 +105,11 @@ public class RecentParentAdapter extends RecyclerView.Adapter<RecentParentAdapte
            mPosition = pos;
            recentFile = mList.get(pos);
            if (recentFile.fileIcon==R.mipmap.icon_main_class_pic){
-               adapter = new RecentChildPicAdapter(mActivity,recentFile.getFileList());
-               layoutManager = new GridLayoutManager(mActivity, 4);
-               lineFactory = LineManagers.both();
+               //30+16+5*4+16
+               int picSize = (ConvertUtils.getScreenWidth()-ConvertUtils.dp2px(82))/3;
+               adapter = new RecentChildPicAdapter(mActivity,recentFile.getFileList(),picSize);
+               layoutManager = new GridLayoutManager(mActivity, 3);
+               lineFactory = LineManagers.both(ConvertUtils.dp2px(5));
            }else {
                adapter = new RecentChildCommonAdapter(mActivity,recentFile.getFileList());
                layoutManager =new LinearLayoutManager(mActivity);
@@ -105,6 +124,25 @@ public class RecentParentAdapter extends RecyclerView.Adapter<RecentParentAdapte
 
         public int moreArrow(){
             return recentFile.isExpand?R.mipmap.arrow_top:R.mipmap.arrow_bottom;
+        }
+    }
+
+
+    public class SearchHolder extends BindingViewHolder<ViewDataBinding>{
+        public BindingCommand onSearchClick = new BindingCommand(new BindingAction() {
+            @Override
+            public void call() {
+
+            }
+        });
+
+        public SearchHolder(@NonNull ViewDataBinding binding) {
+            super(binding);
+        }
+
+        public void bind(){
+            getBinding().setVariable(BR.holder,this);
+            getBinding().executePendingBindings();
         }
     }
 

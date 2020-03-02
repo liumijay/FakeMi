@@ -24,6 +24,15 @@ public class LineManagers {
         };
     }
 
+    public static LineManagerFactory both(final int size) {
+        return new LineManagerFactory() {
+            @Override
+            public RecyclerView.ItemDecoration create(RecyclerView recyclerView) {
+                return new DividerLine(recyclerView.getContext(),size, DividerLine.LineDrawMode.BOTH);
+            }
+        };
+    }
+
     public static LineManagerFactory horizontal() {
         return new LineManagerFactory() {
             @Override
