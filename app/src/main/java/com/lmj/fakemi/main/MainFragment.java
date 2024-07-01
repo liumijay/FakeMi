@@ -4,18 +4,13 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
+import androidx.annotation.Nullable;
+
 import com.google.android.material.tabs.TabLayout;
 import com.lmj.fakemi.BR;
 import com.lmj.fakemi.R;
 import com.lmj.fakemi.databinding.FragmentMainBinding;
-import com.lmj.fakemi.ergodic.ErgodicFragment;
-import com.lmj.fakemi.recent.RecentFragment;
-import com.lmj.fakemi.type.TypeFragment;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import androidx.annotation.Nullable;
 import me.goldze.mvvmhabit.base.BaseFragment;
 import me.goldze.mvvmhabit.base.BaseViewModel;
 
